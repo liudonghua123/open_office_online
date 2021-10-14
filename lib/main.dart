@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:desktop_window/desktop_window.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
@@ -19,7 +20,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   config = await FlutterConfiguration.fromAsset('assets/config.yaml');
   // config window size on desktop platform
-  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+  if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
     var size = Size(config.windowWidth, config.windowHeight);
     // disable window resizing
     await DesktopWindow.setWindowSize(size);
