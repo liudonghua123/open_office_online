@@ -1,0 +1,10 @@
+default_window_size:
+  height: 300
+  width: 600
+default_providers:
+  - name: microsoft
+    url: https://view.officeapps.live.com/op/view.aspx?src=
+    enabled: true
+  - name: google
+    url: https://docs.google.com/viewer?url=
+    enabled: true
