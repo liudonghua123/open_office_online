@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:desktop_window/desktop_window.dart';
+// import 'package:desktop_window/desktop_window.dart';
+// import 'package:window_size/window_size.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,13 +21,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   config = await FlutterConfiguration.fromAsset('assets/config.yaml');
   // config window size on desktop platform
-  if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
-    var size = Size(config.windowWidth, config.windowHeight);
-    // disable window resizing
-    await DesktopWindow.setWindowSize(size);
-    await DesktopWindow.setMinWindowSize(size);
-    await DesktopWindow.setMaxWindowSize(size);
-  }
+  // if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
+  //   var size = Size(config.windowWidth, config.windowHeight);
+  //   // disable window resizing, not work on windows 11
+  //   // https://github.com/mix1009/desktop_window/issues/36
+  //   // await DesktopWindow.setWindowSize(size);
+  //   // await DesktopWindow.setMinWindowSize(size);
+  //   // await DesktopWindow.setMaxWindowSize(size);
+  //   // disable window resizing plugin using window_size of https://github.com/google/flutter-desktop-embedding
+  //   setWindowMinSize(size);
+  //   setWindowMaxSize(size);
+  // }
   // init local storage
   prefs = await SharedPreferences.getInstance();
   if (!prefs.containsKey('first_run')) {
